@@ -1,0 +1,37 @@
+/* Partie NavBar */
+
+.bg-main{
+    background-color: #f1e7f0;
+}
+
+.img-logo{
+    width: 140px;
+    height: 70px;
+    background-color: #f1e7f0;
+}
+
+.container-card{
+    display: flex;
+}
+
+.link-style, .link-style:hover{
+    text-decoration: none;
+    color: black;
+}
+
+.cardContainer{
+    float:left;
+}
+
+.card-img{
+    align-self: center;
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-top-left-radius: 2px;
+    border-top-right-radius: 2px;
+}
+
+.btnShopping{
+    float:right;
+}
