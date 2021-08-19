@@ -2,6 +2,9 @@
  * Gère l'affichage de la page index
  */
 
+//Appel de la fonction du nombre d'items dans le panier
+showNbItems();
+
 fetch("http://localhost:3000/api/furniture")
     .then(data => data.json())
     .then(jsonListArticle => {

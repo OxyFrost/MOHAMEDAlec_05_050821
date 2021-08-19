@@ -35,3 +35,13 @@
 .btnShopping{
     float:right;
 }
+
+.badge {
+    right: 13px;
+    top: 20px;
+    position: absolute;
+    padding: 5px 8px;
+    border-radius: 50%;
+    background: red;
+    color: white;
+}
