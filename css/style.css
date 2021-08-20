@@ -1,3 +1,9 @@
+/*Contenu pour le site */
+html,body {
+    min-height: 100vh;
+}
+
+
 /* Partie NavBar */
 
 .bg-main{
@@ -44,4 +50,15 @@
     border-radius: 50%;
     background: red;
     color: white;
+}
+
+/* Produit */
+
+.productImg{
+    width: 250px;
+    height: 250px;
+}
+
+.hidden{
+    visibility: hidden;
 }

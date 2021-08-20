@@ -12,7 +12,7 @@
     <link href="css/style.css" rel="stylesheet"/>
 
 
-    <title>Orinoco - Vos meubles en chêne de qualité.</title>
+    <title>Orinoco - Confirmation de votre commande.</title>
 
 </head>
 
@@ -25,7 +25,7 @@
 
         <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-                <form class="nav-link waves-effect" action="panier.html">
+                <form action="panier.html" class="nav-link waves-effect">
                     <button class="btn btn-outline-success my-2 my-sm-0">
                         <i class="fas fa-shopping-cart"></i>
                         Panier
@@ -37,28 +37,17 @@
     </nav>
 
     <!-- Description -->
-    <main>
-        <div class="p-5 mx-3 mt-4 rounded bg-main">
-            <h1 class="text-center fs-2 text-dark">Bienvenue sur Orinoco</h1>
-            <p class="text-center text-dark">Retrouvez notre sélection de meuble en bois faites par des mains d'artisans
-                réputées</p>
+    <main class="container">
+        <div class="p-5 mx-3 mt-5 rounded bg-main text-center">
+            <h1 class="fs-2 text-dark">Merci d'avoir commandé Chez Orinococo !</h1>
+            <p class="text-dark" id="OrderText"></p>
+            <a class="card-link m-2" href="index.html">Retour à l'accueil</a>
         </div>
+
     </main>
 
-    <!-- Card -->
-    <section class="container">
-        <header class="section-heading">
-            <h3 class="section-title mt-3 mb-3">Nos Produits</h3>
-        </header>
-
-        <div class="row justify-content-center container-card">
-            <!-- liste des cartes ici -->
-        </div>
-    </section>
-
-
     <!-- Footer -->
-    <footer class="bg-dark py-4">
+    <footer class="bg-dark py-4 fixed-bottom">
         <ul class="list-inline text-center">
             <li class="list-inline-item"><a href="index.html" title="Accueil">Accueil</a></li>
             <li class="list-inline-item"><a href="mailto:orinoco@mail.com?subject=Contact" title="Contact">Contact</a>
@@ -73,6 +62,6 @@
             src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/function.js"></script>
-    <script src="js/home.js"></script>
+    <script src="js/order.js"></script>
 </body>
 </html>

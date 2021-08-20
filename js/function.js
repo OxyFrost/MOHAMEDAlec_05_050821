@@ -21,6 +21,15 @@
         }else{
             panier.innerHTML += ``;
         }
+    }
 
+    function clearPanier(){
+
+        let confirmActionPanier = confirm("Voulez vous vraiment supprimer le panier ?");
+        if(confirmActionPanier) {
+            alert("Le Panier à bien été vidé");
+            localStorage.clear();
+            window.location.reload();
+        }
 
     }

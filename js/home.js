@@ -8,9 +8,8 @@ showNbItems();
 fetch("http://localhost:3000/api/furniture")
     .then(data => data.json())
     .then(jsonListArticle => {
-        for(let jsonArticle of jsonListArticle){
-            let produit = new Article(jsonArticle);
-            let prix = produit.convertPrice(produit.price);
+        for(let produit of jsonListArticle){
+            let prix = convertPrice(produit.price);
             document.querySelector(".container-card").innerHTML +=
                 `<div class="card cardContainer col-sm-11 col-lg-3 rounded m-2 p-0">
                     <a class="link-style" href="./produit.html?_id=${produit._id}">

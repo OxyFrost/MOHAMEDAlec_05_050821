@@ -3,13 +3,13 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
     <!-- Style CSS -->
-    <link rel="stylesheet" href="css/bootstrap.min.css" />
-    <link rel="stylesheet" href="css/all.min.css" />
-    <link rel="stylesheet" href="css/style.css" />
+    <link href="css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="css/all.min.css" rel="stylesheet"/>
+    <link href="css/style.css" rel="stylesheet"/>
 
 
     <title>Orinoco - Panier.</title>
@@ -18,28 +18,23 @@
 
 <body>
 
-<!--Header + nav menu-->
-<nav class="navbar bg-main navbar-expand-lg navbar-light">
-    <a class="navbar-brand" href="index.html">
-        <img class="img-logo" src="img/logo.png" alt="Logo Orinococo">
-    </a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
+    <!--Header + nav menu-->
+    <nav class="navbar bg-main navbar-expand-lg navbar-light">
+        <a class="navbar-brand" href="index.html">
+            <img alt="Logo Orinococo" class="img-logo" src="img/logo.png">
+        </a>
 
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-                <a href="#!" class="nav-link waves-effect">
+                <form class="nav-link waves-effect" action="panier.html">
                     <button class="btn btn-outline-success my-2 my-sm-0">
                         <i class="fas fa-shopping-cart"></i>
                         Panier
                     </button>
-                </a>
+                </form>
             </li>
         </ul>
-    </div>
-</nav>
+    </nav>
 
 
 <!-- Tableau des articles -->
@@ -59,44 +54,62 @@
         <tbody id="list-panier">
         </tbody>
     </table>
-    <div class="text-center" id="emptyPanier">
-
+    <div class="text-center m-2" id="emptyPanier">
     </div>
 </section>
 
 <!-- Commande client -->
-<section class="container">
+<section class="container hidden" id="containerForm">
     <h3 class="section-title m-3">Vos Informations</h3>
     <div class="bg-main rounded p-2 mb-4">
-        <form id="formContact" name="formContact">
+        <form action="#" id="formContact" name="formContact">
             <div class="row">
                 <div class="form-group col-md-6 col-sm-12">
                     <label class="font-weight-bold" for="prenom">Prénom : </label>
-                    <input type="text" class="form-control" id="prenom" aria-describedby="emailHelp" placeholder="Joe" required>
+                    <input class="form-control" id="prenom" placeholder="Joe" required type="text">
+                    <div class="invalid-feedback">
+                        Entrez un prénom.
+                    </div>
                 </div>
                 <div class="form-group col-md-6 col-sm-12">
                     <label class="font-weight-bold" for="nom">Nom : </label>
-                    <input type="text" class="form-control" id="nom" aria-describedby="emailHelp" placeholder="Guérand" required>
+                    <input class="form-control" id="nom" placeholder="Guérand" required type="text">
+                    <div class="invalid-feedback">
+                        Entrez un nom.
+                    </div>
                 </div>
                 <div class="form-group col-12">
                     <label class="font-weight-bold" for="email">Adresse Email : </label>
-                    <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="contact@gmail.com" required>
-                    <small id="emailHelp" class="form-text text-muted">Nous garderons votre adresse mail privée.</small>
+                    <input class="form-control" id="email" placeholder="contact@gmail.com" required type="email">
+                    <div class="invalid-feedback">
+                        Veuillez saisir une adresse mail correcte.
+                    </div>
+                    <small class="form-text text-muted" id="emailHelp">Nous garderons votre adresse mail privée.</small>
                 </div>
                 <div class="form-group col-12">
                     <label class="font-weight-bold" for="adress">Adresse :</label>
-                    <input type="text" class="form-control" id="adress" aria-describedby="emailHelp" placeholder="36 Rue du Faubourg" required>
+                    <input class="form-control" id="adress" placeholder="36 Rue du Faubourg" required type="text">
+                    <div class="invalid-feedback">
+                        Veuillez saisir une adresse correcte.
+                    </div>
                 </div>
                 <div class="form-group col-md-6 col-sm-12">
                     <label class="font-weight-bold" for="codePostal">Code Postale : </label>
-                    <input type="number" class="form-control" id="codePostal" aria-describedby="emailHelp" placeholder="75000" required>
+                    <input class="form-control" id="codePostal" placeholder="75000" required type="number">
+                    <div class="invalid-feedback">
+                        Veuillez saisir un Code Postale correcte.
+                    </div>
                 </div>
                 <div class="form-group col-md-6 col-sm-12">
                     <label class="font-weight-bold" for="ville">Ville : </label>
-                    <input type="text" class="form-control" id="ville" aria-describedby="emailHelp" placeholder="Paris" required>
+                    <input class="form-control" id="ville" placeholder="Paris" required type="text">
+                    <div class="invalid-feedback">
+                        Veuillez saisir une Ville.
+                    </div>
                 </div>
                 <div class="form-group">
-                    <button class="btn btn-primary m-2 ml-3" type="submit">Submit form</button>
+                    <input class="btn btn-primary m-2 ml-3" id="envoyerForm" name="envoyerForm" type="submit"
+                           value="Valider">
                 </div>
             </div>
         </form>
@@ -117,7 +130,6 @@
 
 
 <script src="js/bootstrap.min.js"></script>
-<script src="js/article.js"></script>
 <script src="js/function.js"></script>
 <script src="js/panier.js"></script>
 
