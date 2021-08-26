@@ -1,36 +1,37 @@
 /**
  * Partie Panier du site
  */
+const api = apiURL();
 
 // Récupération des produits dans le LocalStorage
 let produits = JSON.parse(localStorage.getItem("produit"));
 
 const panier = document.querySelector("#list-panier");
 
-if(produits === null || produits == 0){
+if (produits === null || produits == 0) {
     document.querySelector("#emptyPanier").innerHTML += `<div class="text-center">Le Panier est vide</div>`;
-}else{
+} else {
 
-    //Enlève le fait que le
+    //Enlève le fait que le formulaire soit invisible
     var element = document.getElementById("containerForm");
     element.classList.remove("hidden");
 
     let prixTotal = 0;
-    products = new Array();
-    for(i = 0; i < produits.length; i++){
+    products = [];
+    for (i = 0; i < produits.length; i++) {
 
         panier.innerHTML +=
             `
             <tr>
                 <th>${produits[i].name}</th>
-                <th>N/F</th>
+                <th>${produits[i].varnish}</th>
                 <th>${produits[i].qte}</th>
                 <th>${convertPrice(produits[i].price)}</th>
-                <th>${convertPrice((produits[i].price*produits[i].qte))}</th>
+                <th>${convertPrice((produits[i].price * produits[i].qte))}</th>
                 <th><button class="btn delete"><i class="fas fa-times text-danger "></i></button></th>
            </tr>`
 
-        prixTotal += (produits[i].price*produits[i].qte);
+        prixTotal += (produits[i].price * produits[i].qte);
         //Récupération des id des produits pour l'envoie Commande
         products.push(produits[i]._id);
     }
@@ -47,13 +48,13 @@ if(produits === null || produits == 0){
 
     let deleteBtn = document.querySelectorAll(".delete");
 
-    for(let i = 0; i < deleteBtn.length; i++){
-        deleteBtn[i].addEventListener("click", (e) =>{
+    for (let i = 0; i < deleteBtn.length; i++) {
+        deleteBtn[i].addEventListener("click", (e) => {
             e.preventDefault();
             //alert pour confirmer la suppression
             let confirmAction = confirm("Voulez vous vraiment supprimer ce produit ?");
 
-            if(confirmAction) {
+            if (confirmAction) {
                 //Selection de l'id du produit selectionner
                 let idButton = produits[i]._id;
 
@@ -72,7 +73,7 @@ if(produits === null || produits == 0){
 
     let deleteBtnAll = document.querySelectorAll("#deleteAll");
     console.log(deleteBtnAll);
-    deleteBtnAll[0].addEventListener("click", (e) =>{
+    deleteBtnAll[0].addEventListener("click", (e) => {
         e.preventDefault();
         clearPanier();
     })
@@ -82,10 +83,10 @@ if(produits === null || produits == 0){
     //Configuration du bouton Envoi Formulaire
     const btnEnvoyerForm = document.querySelector("#envoyerForm");
 
-    btnEnvoyerForm.addEventListener("click", (e)=>{
+    btnEnvoyerForm.addEventListener("click", (e) => {
 
         const form = document.getElementById("formContact");
-        if(form.checkValidity()) {
+        if (form.checkValidity()) {
             //Création de l'objet Contact
             let contact = {
                 firstName: document.querySelector("#prenom").value,
@@ -96,7 +97,6 @@ if(produits === null || produits == 0){
             }
 
 
-
             const dataCommande = {
                 contact,
                 products
@@ -104,22 +104,19 @@ if(produits === null || produits == 0){
             }
             console.log(dataCommande);
 
-            fetch("http://localhost:3000/api/furniture/order", {
+            fetch(api + "furniture/order", {
                 method: "POST",
                 headers: {
                     'Content-Type': 'application/json',
                     'Accept': 'application/json'
                 },
                 body: JSON.stringify(dataCommande)
-            }).then((response) => response.json())
+            })
+                .then((response) => response.json())
                 .then((data) => {
                     localStorage.setItem("order", JSON.stringify(data));
                     document.location.href = "order.html";
                 });
         }
     })
-
-
-
-
 }

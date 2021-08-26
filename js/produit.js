@@ -1,5 +1,6 @@
 //Appel de la fonction du nombre d'items dans le panier
 showNbItems();
+const api = apiURL();
 
 //récupération de la chaîne de requête dans l'url
 const queryString_url_id = window.location.search;
@@ -9,7 +10,7 @@ const urlSearchParams = new URLSearchParams(queryString_url_id);
 const id = urlSearchParams.get("_id");
 
 //affichage du produit
-fetch(`http://localhost:3000/api/furniture/${id}`)
+fetch(api + `furniture/${id}`)
     .then(data => data.json())
     .then(produit => {
         let prix = convertPrice(produit.price);
@@ -23,19 +24,29 @@ fetch(`http://localhost:3000/api/furniture/${id}`)
                         <label for="option_produit">Vernissage : </label>
                         <select name="option_produit" id="option_produit">
                         </select>
+                        <br/>
+                        <label for="option_quantite">Qté : </label>
+                        <select name="option_quantite" id="option_quantite">
+                        </select>
                         <p class="card-price text-primary font-weight-bold align-self-end">${prix}</p>
                         <button id="add_panier" class="btn btn-primary btnShopping mt-2 align-self-end">Acheter</button>
                     </form>
                 </div>
             </div>`
 
-        //Boucle pour les options du produits
+        //Boucle pour les options du produit
         for (let varnish of produit.varnish) {
             document.querySelector("#option_produit").innerHTML += `<option value="${varnish}">${varnish}</option>`
         }
 
+        //Boucle pour la quantité du produit
+        for (let i = 1; i < 100; i++) {
+            document.querySelector("#option_quantite").innerHTML += `<option value="${i}">${i}</option>`
+        }
+
         //Id du Formulaire
         const idForm = document.querySelector("#option_produit");
+        const idQte = document.querySelector("#option_quantite");
 
         //Récupère le bouton d'achat et écoute
         const btn_addPanier = document.querySelector("#add_panier");
@@ -45,8 +56,8 @@ fetch(`http://localhost:3000/api/furniture/${id}`)
 
             //Récupère la value selectionnée dans le formulaire
             const choixForm = idForm.value;
-
-            produit.qte = 1;
+            produit.varnish = choixForm;
+            produit.qte = idQte.value;
 
             // Récuperer les données dans le LocalStorage
             //JSON.parse permets de convertir les données du format JSON en objet Javascript
@@ -54,18 +65,18 @@ fetch(`http://localhost:3000/api/furniture/${id}`)
             let productFound = false;
 
             //Cas si il y'a des produits existants
-            if(savedProduct){
-                for(i = 0; i < savedProduct.length; i++){
-                    if(produit._id == savedProduct[i]._id){
-                        savedProduct[i].qte += 1;
+            if (savedProduct) {
+                for (i = 0; i < savedProduct.length; i++) {
+                    if (produit._id == savedProduct[i]._id) {
+                        savedProduct[i].qte = parseInt(savedProduct[i].qte) + parseInt(idQte.value);
                         productFound = true;
                         break;
                     }
                 }
-                if(productFound == false) {
+                if (productFound == false) {
                     savedProduct.push(produit);
                 }
-            }else{ // Panier Vide
+            } else { // Panier Vide
                 savedProduct = [];
                 savedProduct.push(produit);
             }
@@ -74,8 +85,7 @@ fetch(`http://localhost:3000/api/furniture/${id}`)
             alert('Le Produit à bien été ajouté au panier');
             window.location.reload();
         })
-
-
-
-
     })
+    .catch(function (error) {
+        console.log('Il y a eu un problème avec l\'opération fetch: ' + error.message);
+    });

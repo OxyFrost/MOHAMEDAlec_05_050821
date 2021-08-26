@@ -23,6 +23,7 @@
         }
     }
 
+    //Permet de vider complètement le panier
     function clearPanier(){
 
         let confirmActionPanier = confirm("Voulez vous vraiment supprimer le panier ?");
@@ -31,5 +32,8 @@
             localStorage.clear();
             window.location.reload();
         }
+    }
 
+    function apiURL(){
+        return 'http://localhost:3000/api/';
     }
