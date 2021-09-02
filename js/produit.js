@@ -15,22 +15,36 @@ fetch(api + `furniture/${id}`)
     .then(produit => {
         let prix = convertPrice(produit.price);
         document.querySelector(".article-card").innerHTML +=
-            `<div class="card flex-md-row mb-4 box-shadow h-md-250 m-4">
-                <img class="card-img-left flex-auto d-none d-md-block productImg" src="${produit.imageUrl}" alt="Thumbnail [200x250]" data-holder-rendered="true">
-                <div class="card-body d-flex flex-column align-items-start pb-0 p-2">
-                    <h5 class="card-title">${produit.name}</h5>
-                    <p class="card-text">${produit.description}</p>
-                    <form>
-                        <label for="option_produit">Vernissage : </label>
-                        <select name="option_produit" id="option_produit">
-                        </select>
-                        <br/>
-                        <label for="option_quantite">Qté : </label>
-                        <select name="option_quantite" id="option_quantite">
-                        </select>
-                        <p class="card-price text-primary font-weight-bold align-self-end">${prix}</p>
-                        <button id="add_panier" class="btn btn-primary btnShopping mt-2 align-self-end">Acheter</button>
-                    </form>
+            `<div class="card">
+                <div class="row g-0">
+                    <div class="col-md-6 border-end">
+                        <div class="d-flex flex-column justify-content-center">
+                            <div class="main_image"> <img src="${produit.imageUrl}" width="350"> </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="p-3 right-side">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <h3>${produit.name}</h3>
+                            </div>
+                            <div class="mt-2 pr-3 content">
+                                <p>${produit.description}</p>
+                            </div>
+                            <h3>${prix}</h3>
+                            <form>
+                                <label for="option_produit">Vernissage : </label>
+                                <select name="option_produit" id="option_produit">
+                                </select>
+                                <br/>
+                                <label for="option_quantite">Qté : </label>
+                                <select name="option_quantite" id="option_quantite">
+                                </select>
+                                <div class="buttons d-flex flex-row mt-5 gap-3">
+                                    <button id="add_panier" class="btnProduct btn-dark" type="submit">Ajouter au Panier</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
                 </div>
             </div>`
 

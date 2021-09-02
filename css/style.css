@@ -25,6 +25,47 @@ html,body {
     float:right;
 }
 
+/* Cartes */
+
+
+
+/* Produit */
+
+.card {
+    border: 1px solid lightgray;
+    overflow: hidden
+}
+
+.main_image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 1px solid #eee;
+    height: 400px;
+    width: 100%;
+    overflow: hidden
+}
+
+.content p {
+    font-size: 12px
+}
+
+.right-side {
+    position: relative
+}
+
+.btnProduct {
+    height: 50px;
+    width: 150px;
+    border-radius: 0px !important
+}
+
+/** Panier **/
+
+.hidden{
+    visibility: hidden;
+}
+
 .badge {
     right: 13px;
     top: 20px;
@@ -33,33 +74,4 @@ html,body {
     border-radius: 50%;
     background: red;
     color: white;
-}
-
-/* Cartes */
-
-
-
-/* Produit */
-
-.productImg{
-    width: 250px;
-    height: 250px;
-}
-
-.cardContainer{
-    float:left;
-}
-
-.card-img{
-    align-self: center;
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-    border-top-left-radius: 2px;
-    border-top-right-radius: 2px;
-}
-
-
-.hidden{
-    visibility: hidden;
 }
